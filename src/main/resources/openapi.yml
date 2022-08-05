@@ -1,0 +1,453 @@
+openapi: 3.0.3
+info:
+  title: Movieservice - OpenAPI 3.0
+  description: Movieservice - OpenAPI 3.0\
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://localhost:8080
+servers:
+  - url: http://localhost:8080/api/
+tags:
+  - name: Movie
+    description: Everything about your Movies
+    externalDocs:
+      description: Find out more
+      url: http://localhost:8080
+  - name: Director
+    description: Access to Movie Director
+    externalDocs:
+      description: Find out more about our director
+      url: http://localhost:8080
+paths:
+  /movie:
+    get:
+      tags:
+        - movie
+      summary: Returns all movies
+      description: Returns movies
+      operationId: getAllMovies
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'          
+        '400':
+          description: Invalid status value
+    put:
+      tags:
+        - movie
+      summary: Update an existing movie
+      description: Update an existing movie by Id
+      operationId: updateMovie
+      requestBody:
+        description: Update an existent movie
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Movie not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - movie
+      summary: Add a new movie
+      description: Add a new movie
+      operationId: addMovie
+      requestBody:
+        description: Create a new movie
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'          
+        '405':
+          description: Invalid input
+  /movie/{movieId}:
+    get:
+      tags:
+        - movie
+      summary: Find movie by ID
+      description: Returns a single movie
+      operationId: getMovieById
+      parameters:
+        - name: movieId
+          in: path
+          description: ID of movie to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Movie not found
+    delete:
+      tags:
+        - movie
+      summary: Deletes a movie
+      description: delete a movie
+      operationId: deleteMovie
+      parameters:
+        - name: movieId
+          in: path
+          description: Movie id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '400':
+          description: Invalid Movie value
+  /movie/findByDirectorId/{directorId}:
+    get:
+      tags:
+        - movie
+      summary: Finds Movies by director
+      description: Finds Movies by director
+      operationId: findMoviesByDirector
+      parameters:
+        - name: directorId
+          in: path
+          description: director value that need to be considered for filter
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'          
+        '400':
+          description: Invalid status value
+  /movie/findByRating/{rating}:
+    get:
+      tags:
+        - movie
+      summary: Finds Movies by rating
+      description: Finds Movies by rating
+      operationId: findMoviesByRating
+      parameters:
+        - name: rating
+          in: path
+          description: rating value that need to be considered for filter
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'     
+        '400':
+          description: Invalid tag value
+  /movie/{movieId}/rating:
+    get:
+      tags:
+        - movie
+      summary: Returns movie rating
+      description: Returns movie rating
+      operationId: getRating
+      parameters:
+        - name: movieId
+          in: path
+          description: ID of movie to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'          
+        '400':
+          description: Invalid tag value
+    delete:
+      tags:
+        - movie
+      summary: Delete movie rating
+      description: Delete movie rating
+      operationId: deleteRating
+      parameters:
+        - name: movieId
+          in: path
+          description: ID of movie to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'          
+        '400':
+          description: Invalid tag value
+  /movie/{movieId}/rating/{rating}:
+    put:
+      tags:
+        - movie
+      summary: Provides rating to movie
+      description: Provides rating to movie
+      operationId: updateRating
+      parameters:
+        - name: movieId
+          in: path
+          description: ID of movie to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+        - name: rating
+          in: path
+          description: rating value that need to be considered for filter
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'          
+        '400':
+          description: Invalid tag value
+  /director:
+    get:
+      tags:
+        - director
+      summary: Returns all director
+      description: Returns all director
+      operationId: getAllDirectors
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Director'
+    post:
+      tags:
+        - director
+      summary: Add Director
+      description: Add Director
+      operationId: addDirector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Director'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Director'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - director
+      summary: Update Director
+      description: Update Director
+      operationId: updateDirector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Director'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Director'
+        '405':
+          description: Invalid input
+  /director/{directorId}:
+    get:
+      tags:
+        - director
+      summary: Find director by ID
+      description: Find director by ID
+      operationId: getDirectorById
+      parameters:
+        - name: directorId
+          in: path
+          description: ID of director that needs to be fetched
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Director'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Director not found
+    delete:
+      tags:
+        - director
+      summary: Delete director by ID
+      description: Delete director by ID
+      operationId: deleteDirector
+      parameters:
+        - name: directorId
+          in: path
+          description: ID of the director that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Director not found
+components:
+  schemas:
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          description: Movie Name
+          example: approved
+        rating:
+          type: integer
+          format: int32
+          example: 7
+        description:
+          type: string
+          description: Movie Description
+          example: approved
+    Director:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Tony Lee
+    Rating:
+      required:
+        - userId
+        - movieId
+        - rating
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        movieId:
+          type: integer
+          format: int64
+        rating:
+          type: integer
+          format: int64
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+  requestBodies:
+    Movie:
+      description: Movie object that needs to be added 
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Movie'
+    MovieArray:
+      description: List of movie object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Movie'
