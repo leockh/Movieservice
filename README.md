@@ -15,7 +15,7 @@ All communication with the program must be via REST, and the program must allow 
 
     • Search movies where the rating is above a provided rating. 
 
-![Overview Screenshot](docs/images/openapi.png?raw=true)
+![Overview Screenshot](https://github.com/leockh/Movieservice/blob/master/doc/images/openapi.png?raw=true)
 
 
 # Features
