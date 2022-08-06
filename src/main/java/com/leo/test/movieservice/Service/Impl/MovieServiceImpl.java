@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.leo.test.movieservice.Service.DirectorService;
 import com.leo.test.movieservice.Service.MovieService;
-import com.leo.test.movieservice.api.ApiUtil;
-import com.leo.test.movieservice.api.MovieApi;
+
 import com.leo.test.movieservice.exception.AlreadyExistsException;
 import com.leo.test.movieservice.exception.NotExistsException;
 import com.leo.test.movieservice.model.Director;

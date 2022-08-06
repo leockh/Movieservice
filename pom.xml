@@ -116,6 +116,12 @@
 		    <version>${lombok.version}</version>
 		    <scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+		<dependency>
+		    <groupId>org.modelmapper</groupId>
+		    <artifactId>modelmapper</artifactId>
+		    <version>3.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -123,68 +129,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-			    <groupId>org.openapitools</groupId>
-			    <artifactId>openapi-generator-maven-plugin</artifactId>
-			    <!-- RELEASE_VERSION -->
-			    <version>6.0.1</version>
-			    <!-- /RELEASE_VERSION -->
-			    <executions>
-			        <execution>
-			            <goals>
-			                <goal>generate</goal>
-			            </goals>
-			            <configuration>
-			            	<output>${project.basedir}</output>
-							<inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-							<language>spring</language>
-							<generatorName>spring</generatorName>
-							<generateModels>false</generateModels>
-							<generateModelDocumentation>false</generateModelDocumentation>
-							<generateApis>true</generateApis>
-							<generateApiTests>true</generateApiTests>
-							<generateModelTests>false</generateModelTests>
-							<generateSupportingFiles>true</generateSupportingFiles>
-							<modelPackage>com.leo.test.movieservice.model</modelPackage>
-							<apiPackage>com.leo.test.movieservice.api</apiPackage>
-							<generateApiTests>true</generateApiTests>
-							<generateApiDocumentation>true</generateApiDocumentation>
-							<addTestCompileSourceRoot>${project.basedir}/src/test/java</addTestCompileSourceRoot>
-							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-							<skip>false</skip>
-							<configOptions>
-								<sourceFolder>src/main/java</sourceFolder>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<sortParamsByRequiredFlag>true</sortParamsByRequiredFlag>
-								<checkDuplicatedModelName>true</checkDuplicatedModelName>
-								<useBeanValidation>true</useBeanValidation>
-								<dateLibrary>java8-localdatetime</dateLibrary>
-								<delegatePattern>true</delegatePattern>
-							</configOptions>
-			            </configuration>
-			        </execution>
-			    </executions>
-			</plugin>
-			<plugin>
-			    <groupId>org.jacoco</groupId>
-			    <artifactId>jacoco-maven-plugin</artifactId>
-			    <version>${jacoco.version}</version>
-			    <executions>
-			        <execution>
-			            <id>jacoco-initialize</id>
-			            <goals>
-			                <goal>prepare-agent</goal>
-			            </goals>
-			        </execution>
-			        <execution>
-			            <id>jacoco-site</id>
-			            <phase>package</phase>
-			            <goals>
-			                <goal>report</goal>
-			            </goals>
-			        </execution>
-			    </executions>
 			</plugin>
 		</plugins>
 	</build>

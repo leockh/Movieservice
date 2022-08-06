@@ -41,7 +41,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.leo.test.movieservice.Service.MovieService;
-import com.leo.test.movieservice.api.MovieApiController;
 import com.leo.test.movieservice.model.Director;
 import com.leo.test.movieservice.model.Movie;
 
