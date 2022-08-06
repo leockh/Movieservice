@@ -18,10 +18,15 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="movie")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
 
     @Id
@@ -49,57 +54,16 @@ public class Movie {
 	              columnNames = {"movie_id", "director_id"})})
     private List<Director> directors = new ArrayList<>();
     
-    public Movie(long id, String name, int rating, List<Director> directors) {
-    	this.id = id;
-        this.name = name;
-        this.rating = rating;
-        this.directors = directors;
-    }
-    
-    public Movie(String name, int rating, List<Director> directors) {
-        this.name = name;
-        this.rating = rating;
-        this.directors = directors;
-    }
-    
     public Movie(long id, String name, int rating) {
     	this.id = id;
-        this.name = name;
-        this.rating = rating;
-    }
-    
-    protected Movie() {}
-    
-    public void setId(long id) {
-    	this.id = id;
-    }
-    
-    public long getId() {
-    	return id;
-    }
-    
-    public void setName(String name) {
     	this.name = name;
-    }
-    
-    public String getName() {
-    	return name;
-    }
-    
-    public void setRating(int rating) {
     	this.rating = rating;
     }
     
-    public int getRating() {
-    	return rating;
-    }
-    
-    public void setDirectors(List<Director> directors) {
+    public Movie(String name, int rating, List<Director> directors) {
+    	this.name = name;
+    	this.rating = rating;
     	this.directors = directors;
-    }
-    
-    public List<Director> getDirectors() {
-    	return directors;
     }
 
 }
