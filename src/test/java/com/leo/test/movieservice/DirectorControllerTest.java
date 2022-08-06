@@ -32,7 +32,7 @@ import com.leo.test.movieservice.model.Director;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class DirectorControllerTest {
+class DirectorControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -45,7 +45,7 @@ public class DirectorControllerTest {
     }
 
     @Test
-    public void whenPostDirector_thenCreateDirector() throws Exception {
+    void whenPostDirector_thenCreateDirector() throws Exception {
         Director director1 = new Director("Leo","Cheung");
         given(service.addDirector(Mockito.any())).willReturn(director1);
 

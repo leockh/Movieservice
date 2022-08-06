@@ -48,7 +48,7 @@ import com.leo.test.movieservice.model.Movie;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MovieControllerTest {
+class MovieControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -61,7 +61,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void whenPostMovie_thenCreateMovie() throws Exception {
+    void whenPostMovie_thenCreateMovie() throws Exception {
         Movie movie1 = new Movie("Batman",5,null);
         given(service.addMovie(Mockito.any())).willReturn(movie1);
 
@@ -75,7 +75,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void whenGetMovies_thenReturnJsonArray() throws Exception {
+    void whenGetMovies_thenReturnJsonArray() throws Exception {
     	Movie movie1 = new Movie(Long.valueOf(1),"Batman",5);
     	Movie movie2 = new Movie(Long.valueOf(2),"Superman",7);
     	Movie movie3 = new Movie(Long.valueOf(3),"Ironman",10);
@@ -95,7 +95,7 @@ public class MovieControllerTest {
     }
     
     @Test
-    public void whenFindMoviesByDirectorsId_thenReturnJsonArray() throws Exception {
+    void whenFindMoviesByDirectorsId_thenReturnJsonArray() throws Exception {
     	Director director1 = new Director(Long.valueOf(1),"Tony","Lee");
     	Director director2 = new Director(Long.valueOf(3),"Jacky","Chan");
         
@@ -126,7 +126,7 @@ public class MovieControllerTest {
     }
     
     @Test
-    public void whenFindMoviesByRating_thenReturnJsonArray() throws Exception {
+    void whenFindMoviesByRating_thenReturnJsonArray() throws Exception {
     	Director director1 = new Director(Long.valueOf(1),"Tony","Lee");
     	Director director2 = new Director(Long.valueOf(3),"Jacky","Chan");
         
@@ -157,7 +157,7 @@ public class MovieControllerTest {
     }
     
     @Test
-    public void whenFindMoviesByDirectorsId_thenReturnBlankJsonArray() throws Exception {
+    void whenFindMoviesByDirectorsId_thenReturnBlankJsonArray() throws Exception {
         List<Movie> allMovies = new ArrayList<>();
         long directorId = 1;
         given(service.findMoviesByDirector(Long.valueOf(directorId))).willReturn(allMovies);
@@ -172,7 +172,7 @@ public class MovieControllerTest {
     }
     
     @Test
-    public void whenFindMoviesByRating_thenReturnBlankJsonArray() throws Exception {
+    void whenFindMoviesByRating_thenReturnBlankJsonArray() throws Exception {
         List<Movie> allMovies = new ArrayList<>();
         int rating = 4;
         given(service.findMoviesByRating(rating)).willReturn(allMovies);
@@ -186,7 +186,7 @@ public class MovieControllerTest {
     }
     
     @Test
-    public void whenFindMoviesByNagetiveDirectorsId_thenThrowException() throws Exception {
+    void whenFindMoviesByNagetiveDirectorsId_thenThrowException() throws Exception {
     	Assertions
 	        .assertThatThrownBy(
 	            () -> mvc.perform(get("/api/movie/findByDirectorId/-1").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isInternalServerError()))
@@ -194,7 +194,7 @@ public class MovieControllerTest {
     }
     
     @Test
-    public void whenFindMoviesByNagetiveRating_thenThrowException() throws Exception {
+    void whenFindMoviesByNagetiveRating_thenThrowException() throws Exception {
     	Assertions
         .assertThatThrownBy(
             () -> mvc.perform(get("/api/movie/findByRating/-1").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isInternalServerError()))

@@ -20,7 +20,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springdoc.version>1.6.8</springdoc.version>
         <swagger-ui.version>4.10.3</swagger-ui.version>
-        <lombok.version>1.14.0</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
+        <jacoco.version>0.8.8</jacoco.version>
+        <sonar.coverage.exclusions>src/main/java/com/leo/test/movieservice/api/*</sonar.coverage.exclusions>
     </properties>
 	<dependencies>
 		<dependency>
@@ -102,6 +104,18 @@
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.6.4</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.jacoco</groupId> 
+		    <artifactId>jacoco-maven-plugin</artifactId>
+		    <version>${jacoco.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>${lombok.version}</version>
+		    <scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -149,6 +163,26 @@
 								<delegatePattern>true</delegatePattern>
 							</configOptions>
 			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.jacoco</groupId>
+			    <artifactId>jacoco-maven-plugin</artifactId>
+			    <version>${jacoco.version}</version>
+			    <executions>
+			        <execution>
+			            <id>jacoco-initialize</id>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>jacoco-site</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
 			        </execution>
 			    </executions>
 			</plugin>

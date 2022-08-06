@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class MovieRepositoryTest {
+class MovieRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -32,7 +32,7 @@ public class MovieRepositoryTest {
     private MovieRepository movieRepository;
 
     @Test
-    public void whenFindById_thenReturnMovie() {
+    void whenFindById_thenReturnMovie() {
     	Movie movie1 = new Movie("Batman",5,null);
         entityManager.persistAndFlush(movie1);
 
@@ -41,13 +41,13 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void whenNotExistId_thenReturnNull() {
+    void whenNotExistId_thenReturnNull() {
         Movie fromDb = movieRepository.findById(-11l).orElse(null);
         assertThat(fromDb).isNull();
     }
 
     @Test
-    public void givenListtOfMovies_whenFindAll_thenReturnAllMovies() {
+    void givenListtOfMovies_whenFindAll_thenReturnAllMovies() {
     	Director director1 = new Director("Tony","Lee");
     	Director director2 = new Director("Jacky","Chan");
     	

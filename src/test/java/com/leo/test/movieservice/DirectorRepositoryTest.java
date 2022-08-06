@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class DirectorRepositoryTest {
+class DirectorRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -31,7 +31,7 @@ public class DirectorRepositoryTest {
     private DirectorRepository directorRepository;
 
     @Test
-    public void whenFindById_thenReturnMovie() {
+    void whenFindById_thenReturnMovie() {
     	Director director1 = new Director("Tony","Chan");
         entityManager.persistAndFlush(director1);
 

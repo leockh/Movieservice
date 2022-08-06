@@ -33,7 +33,7 @@ import com.leo.test.movieservice.model.Director;
 import com.leo.test.movieservice.repository.DirectorRepository;
 
 @SpringBootTest
-public class DirectorServiceImplTest {
+class DirectorServiceImplTest {
 
     @TestConfiguration
     static class movieServiceImplTestContextConfiguration {
@@ -51,7 +51,7 @@ public class DirectorServiceImplTest {
     }
 
     @Test
-    public void whenValidFirstNameAndLastName_thenDirectorShouldBeAdded() {
+    void whenValidFirstNameAndLastName_thenDirectorShouldBeAdded() {
     	Director director1 = new Director("Johny", "Lam");
         given(directorRepository.save(Mockito.any())).willReturn(director1);
         
