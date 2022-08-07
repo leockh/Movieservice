@@ -76,7 +76,7 @@ swagger.enabled=false
 {project.basedir}/Movieservice Test.postman_collection.json
 ```
 
-## Postman Test file
+## H2 Console
 ```
 http://localhost:8080/h2-console
 ```
