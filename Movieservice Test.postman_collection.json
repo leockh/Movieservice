@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/movie/2",
+					"raw": "localhost:8080/api/movie/3",
 					"host": [
 						"localhost"
 					],
@@ -20,7 +20,7 @@
 					"path": [
 						"api",
 						"movie",
-						"2"
+						"3"
 					]
 				}
 			},
@@ -51,7 +51,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/movie/findByDirectorId?directorId=1",
+					"raw": "localhost:8080/api/movie/findByDirectorId/11",
 					"host": [
 						"localhost"
 					],
@@ -59,13 +59,8 @@
 					"path": [
 						"api",
 						"movie",
-						"findByDirectorId"
-					],
-					"query": [
-						{
-							"key": "directorId",
-							"value": "1"
-						}
+						"findByDirectorId",
+						"11"
 					]
 				}
 			},
@@ -89,7 +84,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/movie/",
+					"raw": "localhost:8080/api/movie/findByRating/2",
 					"host": [
 						"localhost"
 					],
@@ -97,7 +92,8 @@
 					"path": [
 						"api",
 						"movie",
-						""
+						"findByRating",
+						"2"
 					]
 				}
 			},
@@ -110,7 +106,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Batman 4\",\n    \"rating\":\"2\",\n    \"directors\":[\n        {\"firstName\":\"Leo1\",\"lastName\":\"Lee\"},\n        {\"firstName\":\"Leo2\",\"lastName\":\"Lee2\"}\n    ]\n}",
+					"raw": "{\n    \"name\":\"Iron 17\",\n    \"rating\":\"2\",\n    \"directors\":[\n        {\n                \"id\": 10,\n                \"firstName\": \"Leo1\",\n                \"lastName\": \"Lee\"\n            },\n            {\n                \"id\": 11,\n                \"firstName\": \"Leo2\",\n                \"lastName\": \"Lee2\"\n            }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -139,7 +135,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"id\": 164,\n        \"name\": \"Batman 9\",\n        \"rating\": 2,\n        \"directors\": [\n            {\n                \"id\": 4,\n                \"firstName\": \"Tony\",\n                \"lastName\": \"Lee\"\n            },\n            {\n                \"id\": 10,\n                \"firstName\": \"Leo1\",\n                \"lastName\": \"Lee\"\n            },\n            {\n                \"id\": 11,\n                \"firstName\": \"Leo2\",\n                \"lastName\": \"Lee2\"\n            }\n        ]\n    }",
+					"raw": "    {\n        \"id\": 330,\n        \"name\": \"Iron 16\",\n        \"rating\": 2,\n        \"directors\": [\n            {\n                \"id\": 10,\n                \"firstName\": \"Kenon\",\n                \"lastName\": \"Chan\"\n            },{\n                \"id\": 11,\n                \"firstName\": \"Leo1\",\n                \"lastName\": \"Lee\"\n            }\n        ]\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -166,17 +162,8 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\":\"Batman 1\",\n    \"rating\":\"2\",\n    \"directors\":{\n        {\"firstName\":\"Tony\", \"LastName\":\"Lee\"},\n        {\"firstName\":\"Tony\", \"LastName\":\"Lee\"}\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/api/movie/1",
+					"raw": "localhost:8080/api/movie/453",
 					"host": [
 						"localhost"
 					],
@@ -184,7 +171,7 @@
 					"path": [
 						"api",
 						"movie",
-						"1"
+						"453"
 					]
 				}
 			},
@@ -192,23 +179,11 @@
 		},
 		{
 			"name": "Get Director By ID",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/api/director/1",
+					"raw": "localhost:8080/api/director/11",
 					"host": [
 						"localhost"
 					],
@@ -216,7 +191,7 @@
 					"path": [
 						"api",
 						"director",
-						"1"
+						"11"
 					]
 				}
 			},
@@ -224,31 +199,18 @@
 		},
 		{
 			"name": "Get All Director",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\":\"Batman 1\",\n    \"rating\":\"2\",\n    \"directors\":{\n        {\"firstName\":\"Tony\", \"LastName\":\"Lee\"},\n        {\"firstName\":\"Tony\", \"LastName\":\"Lee\"}\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/api/director/1",
+					"raw": "localhost:8080/api/director",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"api",
-						"director",
-						"1"
+						"director"
 					]
 				}
 			},
@@ -261,7 +223,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\":\"Ken\",\n    \"lastName\":\"Wong\"\n}",
+					"raw": "{\n    \"firstName\":\"Tenny\",\n    \"lastName\":\"Chan\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -290,7 +252,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":\n    \"firstName\":\"Ken\",\n    \"lastName\":\"Wong\"\n}",
+					"raw": "{\n    \"id\":10,\n    \"firstName\":\"Kenon\",\n    \"lastName\":\"Chan\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -317,25 +279,16 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\":\"Batman 1\",\n    \"rating\":\"2\",\n    \"directors\":{\n        {\"firstName\":\"Tony\", \"LastName\":\"Lee\"},\n        {\"firstName\":\"Tony\", \"LastName\":\"Lee\"}\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/api/movie/1",
+					"raw": "localhost:8080/api/director/157",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"api",
-						"movie",
-						"1"
+						"director",
+						"157"
 					]
 				}
 			},
@@ -356,7 +309,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/movie/3/rating/10",
+					"raw": "http://localhost:8080/api/movie/268/rating/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -365,9 +318,9 @@
 					"path": [
 						"api",
 						"movie",
-						"3",
+						"268",
 						"rating",
-						"10"
+						"7"
 					]
 				}
 			},
@@ -376,7 +329,7 @@
 		{
 			"name": "Delete Movie Rating",
 			"request": {
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
