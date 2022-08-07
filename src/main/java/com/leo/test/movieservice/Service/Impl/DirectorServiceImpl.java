@@ -38,7 +38,7 @@ public class DirectorServiceImpl implements DirectorService {
 	
 	@Override
     public void deleteDirector(Long directorId) {
-		log.debug("Deleting movie with id {}", directorId);
+		log.debug("Deleting director with id {}", directorId);
         Director director = directorRepository.findById(directorId).orElseThrow(
 				() -> new NotExistsException (String.format(notExistsExceptionMessage, directorId)));
         if(director.getMovies().size() > 0) {
