@@ -17,10 +17,17 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
 
 @Entity
 @Table(name="director")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Director {
 
 	@Id
@@ -29,9 +36,11 @@ public class Director {
     private long id;
     
     @Column(name="first_name", nullable=false, length=50)
+    @NonNull
     private String firstName;
     
     @Column(name="last_name", nullable=false, length=50)
+    @NonNull
     private String lastName;
     
     @ManyToMany(fetch = FetchType.LAZY,
@@ -42,8 +51,6 @@ public class Director {
     	      mappedBy = "directors")
     @JsonIgnore
 	private List<Movie> movies = new ArrayList<>();
-    	    
-    protected Director() {}
     
     public Director(long id, String firstName, String lastName) {
     	this.id = id;
@@ -56,35 +63,4 @@ public class Director {
     	this.lastName = lastName;
     }
     
-    public void setId(long id) {
-    	this.id = id;
-    }
-    
-    public long getId() {
-    	return id;
-    }
-    
-    public void setFirstName(String firstName) {
-    	this.firstName = firstName;
-    }
-    
-    public String getFirstName() {
-    	return firstName;
-    }
-    
-    public void setLastName(String lastName) {
-    	this.lastName = lastName;
-    }
-    
-    public String getLastName() {
-    	return lastName;
-    }
-    
-    public void setMovies(List<Movie> movies) {
-    	this.movies = movies;
-    }
-    
-    public List<Movie> getMovies() {
-    	return movies;
-    }
 }

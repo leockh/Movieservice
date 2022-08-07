@@ -23,10 +23,11 @@ import com.leo.test.movieservice.model.Director;
 import com.leo.test.movieservice.model.Movie;
 import com.leo.test.movieservice.repository.MovieRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class MovieServiceImpl implements MovieService {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(MovieServiceImpl.class);
 	
 	@Autowired
     private MovieRepository movieRepository;
@@ -34,34 +35,25 @@ public class MovieServiceImpl implements MovieService {
 	@Autowired
     private DirectorService directorService;
 	
+	String notExistsExceptionMessage = "Movie with id=%s don't exists";
+	
 	@Override
 	public Movie addMovie(Movie movie) {
-		LOGGER.debug("Creating {}", movie);
+		log.debug("Creating {}", movie);
         if (movieRepository.existsByName(movie.getName())) {
             throw new AlreadyExistsException (
                     String.format("Movie with name=%s already exists", movie.getName()));
         }
-        /*
-        Movie newMovie = new Movie(movie.getName(), movie.getRating(), movie.getDirectors());
-        newMovie.getDirectors()
-                .addAll(movie.getDirectors()
-                        .stream()
-                        .map(d -> {
-                            Director newdirector = directorService.getDirectorById(d.getId());
-                            newdirector.getMovies().add(newMovie);
-                            return newdirector;
-                        }).collect(Collectors.toList()));
-        */
 		
         return movieRepository.save(movie);
 	}
 
 	@Override
 	public void deleteMovie(Long movieId) {
-		LOGGER.debug("Deleting movie with id {}", movieId);
+		log.debug("Deleting movie with id {}", movieId);
         if (!movieRepository.existsById(movieId)) {
             throw new NotExistsException (
-                    String.format("Movie with id=%s don't exists", movieId));
+                    String.format(notExistsExceptionMessage, movieId));
         }
         movieRepository.deleteById(movieId);
 	}
@@ -80,7 +72,7 @@ public class MovieServiceImpl implements MovieService {
 	public Movie getMovieById(Long movieId) {
 		return movieRepository.findById(movieId).orElseThrow(
 				() -> new NotExistsException (
-	                    String.format("Movie with id=%s don't exists", movieId)));
+	                    String.format(notExistsExceptionMessage, movieId)));
 	}
 	
 	@Override
@@ -90,17 +82,9 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public Movie updateMovie(Movie movie) {
-		/*
-		Movie updatedMovie = movieRepository.findById(movie.getId()).orElseThrow(
-				() -> new NotExistsException (
-	                    String.format("Movie with id=%s don't exists", movie.getId())));
-		updatedMovie.setName(movie.getName());
-		updatedMovie.setRating(movie.getRating());
-		return movieRepository.save(updatedMovie);
-		*/
 		Movie updateMovie = movieRepository.findById(movie.getId()).orElseThrow(
 				() -> new NotExistsException (
-	                    String.format("Movie with id=%s don't exists", movie.getId())));
+	                    String.format(notExistsExceptionMessage, movie.getId())));
 		updateMovie.getDirectors().clear();
 		updateMovie.getDirectors()
                 .addAll(movie.getDirectors()
