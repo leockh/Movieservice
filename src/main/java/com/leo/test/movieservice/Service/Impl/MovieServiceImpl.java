@@ -94,7 +94,8 @@ public class MovieServiceImpl implements MovieService {
                             newdirector.getMovies().add(updateMovie);
                             return newdirector;
                         }).collect(Collectors.toList()));
-		
+		updateMovie.setName(movie.getName());
+		updateMovie.setRating(movie.getRating());
         return movieRepository.save(updateMovie);
 	}
 		
